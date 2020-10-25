@@ -4,6 +4,7 @@ morgan = require("morgan");
 const app = express();
 
 app.use(morgan("common"));
+app.use(express.static("public"));
 // GET requests
 app.get("/", (req, res) => {
   res.send("Welcome to my movie club!");
