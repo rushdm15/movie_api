@@ -57,7 +57,7 @@
           <td>
             Return data about a director (bio, birth year, death year) by name
           </td>
-          <td>/movies/director/name</td>
+          <td>/movies/:title/director</td>
           <td>GET</td>
           <td>None</td>
           <td>
@@ -81,7 +81,7 @@
         </tr>
         <tr>
           <td>Allow users to update their user info (username)</td>
-          <td>/users/username</td>
+          <td>/users/:Username</td>
           <td>PUT</td>
           <td>None</td>
           <td>A text message indicating whether user info was update</td>
@@ -91,7 +91,7 @@
             Allow users to add a movie to their list of favorites (showing only
             a text that a movie has been added—more on this later)
           </td>
-          <td>/users</td>
+          <td>/newMovie</td>
           <td>POST</td>
           <td>
             A JSON object holding data about the movie to add, structured only
@@ -107,7 +107,7 @@
             Allow users to remove a movie from their list of favorites (showing
             only a text that a movie has been removed—more on this later)
           </td>
-          <td>/users</td>
+          <td>/movies/:movieid</td>
           <td>DELETE</td>
           <td>None</td>
           <td>
@@ -119,7 +119,7 @@
             Allow existing users to deregister (showing only a text that a user
             email has been removed—more on this later)
           </td>
-          <td>/user/username</td>
+          <td>/users/:Username</td>
           <td>DELETE</td>
           <td>None</td>
           <td>
