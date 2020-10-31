@@ -14,7 +14,7 @@ app.use((err, req, res, next) => {
   res.status(500).send("Something broke!");
 });
 
-let Movies = [
+let movies = [
   {
     title: "Harry Potter and the Sorcerer's Stone",
     director: "J.K. Rowling"
@@ -95,7 +95,7 @@ app.post("/movies", (req, res) => {
   let newMovie = req.body;
 
   if (!newMovie.title) {
-    const message = "Missing name in request body";
+    const message = "Missing title in request body";
     res.status(400).send(message);
   } else {
     newMovie.movieID = uuid.v4();
