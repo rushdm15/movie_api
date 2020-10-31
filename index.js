@@ -1,6 +1,4 @@
 const express = require("express");
-morgan = require("morgan");
-(bodyParser = require("body-parser")), (uuid = require("uuid"));
 const morgan = require("morgan");
 const bodyParser = require("body-parser");
 const uuid = require("uuid");
