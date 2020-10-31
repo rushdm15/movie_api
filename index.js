@@ -3,9 +3,6 @@ const morgan = require("morgan");
 const bodyParser = require("body-parser");
 const uuid = require("uuid");
 
-const movies = index.movie;
-const users = index.user;
-
 const app = express();
 
 app.use(bodyParser.json());
