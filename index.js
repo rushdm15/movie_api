@@ -118,7 +118,7 @@ app.delete("/movies/:movieID", (req, res) => {
 });
 
 // Update the "user info" of a user by username
-app.put("/users/:Username", (req, res) => {
+app.put("/users/:username", (req, res) => {
   let movie = movies.find(movie => {
     return movie.title === req.params.title;
   });
