@@ -104,7 +104,7 @@ app.post("/movies", (req, res) => {
 });
 
 // Deletes a movie from our list of favorites
-app.delete("/movies/:movieID", (req, res) => {
+app.delete("/movies/:title", (req, res) => {
   let movie = movies.find(movie => {
     return movie.title === req.params.title;
   });
