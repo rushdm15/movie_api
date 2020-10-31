@@ -85,7 +85,7 @@ app.get("/movies", (req, res) => {
 app.get("/movies/:title", (req, res) => {
   res.json(
     movies.find(movie => {
-      return movie.name === req.params.name;
+      return movie.title === req.params.title;
     })
   );
 });
@@ -94,7 +94,7 @@ app.get("/movies/:title", (req, res) => {
 app.post("/movies", (req, res) => {
   let newMovie = req.body;
 
-  if (!newMovie.name) {
+  if (!newMovie.title) {
     const message = "Missing name in request body";
     res.status(400).send(message);
   } else {
@@ -121,7 +121,7 @@ app.delete("/movies/:movieID", (req, res) => {
 // Update the "user info" of a user by username
 app.put("/users/:Username", (req, res) => {
   let movie = movies.find(movie => {
-    return movie.name === req.params.name;
+    return movie.title === req.params.title;
   });
 });
 
