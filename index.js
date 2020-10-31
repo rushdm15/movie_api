@@ -14,7 +14,7 @@ app.use((err, req, res, next) => {
   res.status(500).send("Something broke!");
 });
 
-let topMovies = [
+let Movies = [
   {
     title: "Harry Potter and the Sorcerer's Stone",
     director: "J.K. Rowling"
@@ -91,16 +91,16 @@ app.get("/movies/:title", (req, res) => {
 });
 
 // Adds data for a new movie to our list of favorites.
-app.post("/newMovie", (req, res) => {
+app.post("/movies", (req, res) => {
   let newMovie = req.body;
 
   if (!newMovie.name) {
     const message = "Missing name in request body";
     res.status(400).send(message);
   } else {
-    newStudent.id = uuid.v4();
+    newMovie.movieID = uuid.v4();
     movies.push(newMovie);
-    res.status(201).send(newMovies);
+    res.status(201).send(newMovie);
   }
 });
 
@@ -123,6 +123,7 @@ app.put("/users/:Username", (req, res) => {
   let movie = movies.find(movie => {
     return movie.name === req.params.name;
   });
+});
 
 //   if (movie) {
 //     movie.classes[req.params.class] = parseInt(req.params.grade);
@@ -146,7 +147,7 @@ app.put("/users/:Username", (req, res) => {
 // Gets the director of a movie
 app.get("/movies/:title/director", (req, res) => {
   let movie = movies.find(movie => {
-    return movie.name === req.params.name;
+    return movie.title === req.params.title;
   });
 
   if (movie) {
@@ -165,7 +166,7 @@ app.get("/movies/:title/director", (req, res) => {
   } else {
     res
       .status(404)
-      .send("Student with the name " + req.params.name + " was not found.");
+      .send("Director with the name " + req.params.name + " was not found.");
   }
 });
 
