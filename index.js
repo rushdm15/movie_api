@@ -117,6 +117,23 @@ app.delete("/movies/:movieID", (req, res) => {
   }
 });
 
+// Get a list of Users
+// app.get(
+//   "/users",
+//   passport.authenticate("jwt", { session: false }),
+//   (req, res) => {
+//     users
+//       .find()
+//       .then(users => {
+//         res.status(201).json(users);
+//       })
+//       .catch(err => {
+//         console.error(err);
+//         res.status(500).send("Error: " + err);
+//       });
+//   }
+// );
+
 // Update the "user info" of a user by username
 app.put("/users/:username", (req, res) => {
   let movie = movies.find(movie => {
