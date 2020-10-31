@@ -97,7 +97,7 @@ app.post("/movies", (req, res) => {
     const message = "Missing title in request body";
     res.status(400).send(message);
   } else {
-    newMovie.movieID = uuid.v4();
+    newMovie.title = uuid.v4();
     movies.push(newMovie);
     res.status(201).send(newMovie);
   }
@@ -106,14 +106,14 @@ app.post("/movies", (req, res) => {
 // Deletes a movie from our list of favorites
 app.delete("/movies/:movieID", (req, res) => {
   let movie = movies.find(movie => {
-    return movie.id === req.params.id;
+    return movie.title === req.params.title;
   });
 
   if (movie) {
     movies = movies.filter(obj => {
-      return obj.id !== req.params.id;
+      return obj.title !== req.params.title;
     });
-    res.status(201).send("Movie " + req.params.id + " was deleted.");
+    res.status(201).send("Movie " + req.params.title + " was deleted.");
   }
 });
 
