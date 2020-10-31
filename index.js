@@ -89,6 +89,10 @@ app.get("/movies/:title", (req, res) => {
   );
 });
 
+//Return data about a genre (description) by name/title (e.g., “Thriller”)
+
+//Allow new users to register
+
 // Adds data for a new movie to our list of favorites.
 app.post("/movies", (req, res) => {
   let newMovie = req.body;
@@ -185,6 +189,8 @@ app.get("/movies/:title/director", (req, res) => {
       .send("Director with the name " + req.params.name + " was not found.");
   }
 });
+
+//Allow existing users to deregister (showing only a text that a user email has been removed—more on this later)
 
 app.listen(8080, () => {
   console.log("Your app is listening on port 8080");
