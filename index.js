@@ -165,21 +165,6 @@ app.delete("/movies/:title", (req, res) => {
   }
 });
 
-// Get a list of Users
-// app.get(
-//   "/users",
-//   passport.authenticate("jwt", { session: false }),
-//   (req, res) => {
-//     users
-//       .find()
-//       .then(users => {
-//         res.status(201).json(users);
-//       })
-//       .catch(err => {
-//         console.error(err);
-//         res.status(500).send("Error: " + err);
-//       });
-//   }
 // Get all users
 app.get("/users", (req, res) => {
   Users.find()
