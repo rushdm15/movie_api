@@ -177,11 +177,12 @@ app.get("/users", (req, res) => {
     });
 });
 
-// Update the "user info" of a user by username
-app.put("/users/:username", (req, res) => {
-  let movie = movies.find(movie => {
-    return movie.title === req.params.title;
-  });
+// // Update the "user info" of a user by username
+// app.put("/users/:username", (req, res) => {
+//   let movie = movies.find(movie => {
+//     return movie.title === req.params.title;
+//   });
+// });
 });
 
 // Get a user by username
