@@ -230,6 +230,25 @@ app.get("/users/:Username", (req, res) => {
     });
 });
 
+// Add a movie to a user's list of favorites
+app.post("/users/:Username/Movies/:MovieID", (req, res) => {
+  Users.findOneAndUpdate(
+    { Username: req.params.Username },
+    {
+      $push: { FavoriteMovies: req.params.MovieID }
+    },
+    { new: true }, // This line makes sure that the updated document is returned
+    (err, updatedUser) => {
+      if (err) {
+        console.error(err);
+        res.status(500).send("Error: " + err);
+      } else {
+        res.json(updatedUser);
+      }
+    }
+  );
+});
+
 //   if (movie) {
 //     movie.classes[req.params.class] = parseInt(req.params.grade);
 //     res
