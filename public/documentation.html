@@ -91,16 +91,19 @@
             Allow users to add a movie to their list of favorites (showing only
             a text that a movie has been added—more on this later)
           </td>
-          <td>/newMovie</td>
+          <td>/users/:Username/Movies/:MovieID</td>
           <td>POST</td>
           <td>
+            A text message indicating whether a movie has been added
+          </td>
+          <!-- <td>
             A JSON object holding data about the movie to add, structured only
             by a text
           </td>
           <td>
             A JSON object holding data about the movie added, structured only by
             a text that ( "A movie has been added" )
-          </td>
+          </td> -->
         </tr>
         <tr>
           <td>
