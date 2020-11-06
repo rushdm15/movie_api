@@ -67,9 +67,12 @@
         </tr>
         <tr>
           <td>Allow new users to register</td>
-          <td>/user</td>
+          <td>/users</td>
           <td>POST</td>
           <td>
+            A JSON in the format ID, Username, Password, Email, and Birthday
+          </td>
+          <!-- <td>
             A JSON object holding data about the user to add, structured like:
             (name: "Paulina Smith", classes : ( state: KY age: 21 ) )
           </td>
@@ -77,7 +80,7 @@
             A JSON object holding data about the user added, including username:
             (username : "ghnj788", name: "Paulina Smith", classes : ( state: KY
             age: 21 ) )
-          </td>
+          </td> -->
         </tr>
         <tr>
           <td>Allow users to update their user info (username)</td>
