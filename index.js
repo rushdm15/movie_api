@@ -3,9 +3,9 @@ const Models = require("./models.js");
 const express = require("express");
 const morgan = require("morgan");
 const bodyParser = require("body-parser");
+const uuid = require("uuid");
 const passport = require("passport");
 require("./passport");
-const uuid = require("uuid");
 
 const Movies = Models.Movie;
 const Users = Models.User;
