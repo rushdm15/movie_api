@@ -87,10 +87,24 @@ let movies = [
 // });
 
 // Gets the list of data about ALL movies
+// JWT authentication to a specific endpoint
+app.get(
+  "/movies",
+  passport.authenticate("jwt", {
+    session: false
+  }),
+  (req, res) => {
+    Movies.find()
+      .then(movies => {
+        res.status(201).json(movies);
+      })
+      .catch(error => {
+        console.error(error);
+        res.status(500).send("Error: " + error);
+      });
+  }
+);
 
-app.get("/movies", (req, res) => {
-  res.json(movies);
-});
 // Gets the data about a single movie, by title
 
 app.get("/movies/:title", (req, res) => {
