@@ -316,7 +316,9 @@ app.delete("/users/:Username", (req, res) => {
 // JWT authentication to a specific endpoint
 app.get(
   "/movies",
-  passport.authenticate("jwt", { session: false }),
+  passport.authenticate("jwt", {
+    session: false
+  }),
   (req, res) => {
     Movies.find()
       .then(movies => {
