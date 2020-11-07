@@ -3,6 +3,8 @@ const Models = require("./models.js");
 const express = require("express");
 const morgan = require("morgan");
 const bodyParser = require("body-parser");
+const passport = require("passport");
+require("./passport");
 const uuid = require("uuid");
 
 const Movies = Models.Movie;
@@ -15,6 +17,7 @@ mongoose.connect("mongodb://localhost:27017/myFlixDB", {
 });
 
 app.use(bodyParser.json());
+let auth = require("./auth")(app);
 app.use(morgan("common"));
 app.use(express.static("public"));
 app.use((err, req, res, next) => {
