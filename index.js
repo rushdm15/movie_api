@@ -106,7 +106,6 @@ app.get(
 );
 
 // Gets the data about a single movie, by title
-
 app.get("/movies/:title", (req, res) => {
   res.json(
     movies.find(movie => {
