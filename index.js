@@ -313,24 +313,6 @@ app.delete("/users/:Username", (req, res) => {
     });
 });
 
-// JWT authentication to a specific endpoint
-app.get(
-  "/movies",
-  passport.authenticate("jwt", {
-    session: false
-  }),
-  (req, res) => {
-    Movies.find()
-      .then(movies => {
-        res.status(201).json(movies);
-      })
-      .catch(error => {
-        console.error(error);
-        res.status(500).send("Error: " + error);
-      });
-  }
-);
-
 //Allow existing users to deregister (showing only a text that a user email has been removed—more on this later)
 
 app.listen(8080, () => {
