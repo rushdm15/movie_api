@@ -29,9 +29,10 @@ app.use((err, req, res, next) => {
 });
 
 // GET requests
-// app.get("/", (req, res) => {
-//   res.send("Welcome to my movie club!");
-// });
+app.get("/", (req, res) => {
+  res.send("Welcome to my movie club!");
+});
+
 //
 // app.get("/documentation", (req, res) => {
 //   res.sendFile("public/documentation.html", { root: __dirname });
