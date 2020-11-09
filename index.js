@@ -28,49 +28,6 @@ app.use((err, req, res, next) => {
   res.status(500).send("Something broke!");
 });
 
-let movies = [
-  {
-    title: "Harry Potter and the Sorcerer's Stone",
-    director: "J.K. Rowling"
-  },
-  {
-    title: "Lord of the Rings",
-    director: "J.R.R. Tolkien"
-  },
-  {
-    title: "Twilight",
-    director: "Stephanie Meyer"
-  },
-  {
-    title: "Twilight",
-    director: "Stephanie Meyer"
-  },
-  {
-    title: "Twilight",
-    director: "Stephanie Meyer"
-  },
-  {
-    title: "Twilight",
-    director: "Stephanie Meyer"
-  },
-  {
-    title: "Twilight",
-    director: "Stephanie Meyer"
-  },
-  {
-    title: "Twilight",
-    director: "Stephanie Meyer"
-  },
-  {
-    title: "Twilight",
-    director: "Stephanie Meyer"
-  },
-  {
-    title: "Twilight",
-    director: "Stephanie Meyer"
-  }
-];
-
 // GET requests
 // app.get("/", (req, res) => {
 //   res.send("Welcome to my movie club!");
