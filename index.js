@@ -167,20 +167,6 @@ app.post(
   }
 );
 
-// Adds data for a new movie to our list of favorites.
-app.post("/movies", (req, res) => {
-  let newMovie = req.body;
-
-  if (!newMovie.title) {
-    const message = "Missing title in request body";
-    res.status(400).send(message);
-  } else {
-    newMovie.title = uuid.v4();
-    movies.push(newMovie);
-    res.status(201).send(newMovie);
-  }
-});
-
 // Deletes a movie from list of user's favorite movies
 app.delete("/movies/:title", (req, res) => {
   let movie = movies.find(movie => {
