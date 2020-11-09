@@ -33,20 +33,6 @@ app.get("/", (req, res) => {
   res.send("Welcome to my movie club!");
 });
 
-//
-// app.get("/documentation", (req, res) => {
-//   res.sendFile("public/documentation.html", { root: __dirname });
-// });
-//
-// app.get("/movies", (req, res) => {
-//   res.json(topMovies);
-// });
-
-// // listen for requests
-// app.listen(8080, () => {
-//   console.log("Your app is listening on port 8080.");
-// });
-
 app.use(
   cors({
     origin: (origin, callback) => {
@@ -65,7 +51,6 @@ app.use(
 );
 
 // Gets the list of data about ALL movies
-// JWT authentication to a specific endpoint
 app.get(
   "/movies",
   passport.authenticate("jwt", {
@@ -214,13 +199,6 @@ app.get("/users", (req, res) => {
     });
 });
 
-// // Update the "user info" of a user by username
-// app.put("/users/:username", (req, res) => {
-//   let movie = movies.find(movie => {
-//     return movie.title === req.params.title;
-//   });
-// });
-
 // Update a user's info, by username
 /* We’ll expect JSON in this format
 {
@@ -293,25 +271,6 @@ app.post(
     );
   }
 );
-
-//   if (movie) {
-//     movie.classes[req.params.class] = parseInt(req.params.grade);
-//     res
-//       .status(201)
-//       .send(
-//         "Movie " +
-//           req.params.name +
-//           " was assigned a grade of " +
-//           req.params.grade +
-//           " in " +
-//           req.params.class
-//       );
-//   } else {
-//     res
-//       .status(404)
-//       .send("User with the username " + req.params.name + " was not found.");
-//   }
-// });
 
 // Gets the director of a movie
 app.get(
