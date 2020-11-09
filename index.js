@@ -318,7 +318,7 @@ app.get(
         res.status(500).send("Error: " + err);
       });
   }
-});
+);
 
 // Delete a user from registration database
 app.delete(
