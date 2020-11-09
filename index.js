@@ -84,13 +84,20 @@ app.get(
 );
 
 // Gets the data about a single movie, by title
-app.get("/movies/:title", (req, res) => {
-  res.json(
-    movies.find(movie => {
-      return movie.title === req.params.title;
-    })
-  );
-});
+app.get(
+  "/movies/:title",
+  passport.authenticate("jwt", { session: false }),
+  (req, res) => {
+    Movies.findOne({ Title: req.params.Title })
+      .then(movies => {
+        res.status(201).json(movies);
+      })
+      .catch(error => {
+        console.error(error);
+        res.status(500).send("Error: " + error);
+      });
+  }
+);
 
 //Return data about a genre (description) by name/title (e.g., “Thriller”)
 
