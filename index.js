@@ -342,6 +342,8 @@ app.delete(
 
 //Allow existing users to deregister (showing only a text that a user email has been removed—more on this later)
 
-app.listen(8080, () => {
-  console.log("Your app is listening on port 8080");
+// app.listen(8080, () => {
+//   console.log("Your app is listening on port 8080");
+// });
+
 });
