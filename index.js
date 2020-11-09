@@ -269,9 +269,9 @@ app.post(
           res.json(updatedUser);
         }
       }
-    }
-  );
-});
+    );
+  }
+);
 
 //   if (movie) {
 //     movie.classes[req.params.class] = parseInt(req.params.grade);
