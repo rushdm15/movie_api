@@ -293,28 +293,30 @@ app.post(
 // });
 
 // Gets the director of a movie
-app.get("/movies/:title/director", (req, res) => {
-  let movie = movies.find(movie => {
-    return movie.title === req.params.title;
-  });
-
-  if (movie) {
-    let movieDirector = Object.values(movie.director); // Object.values() filters out object's keys and keeps the values that are returned as a new array
-    // let sumOfGrades = 0;
-    // classesGrades.forEach(grade => {
-    //   sumOfGrades = sumOfGrades + grade;
-    // });
-
-    // let gpa = sumOfGrades / classesGrades.length;
-    // console.log(sumOfGrades);
-    // console.log(classesGrades.length);
-    // console.log(gpa);
-    // res.status(201).send("" + gpa);
-    // //res.status(201).send(gpa);
-  } else {
-    res
-      .status(404)
-      .send("Director with the name " + req.params.name + " was not found.");
+app.get(
+  "/movies/:title/director",
+  passport.authenticate("jwt", { session: false }),
+  (req, res) => {
+    Movies.findOne({ "Director.Name": req.params.Name })
+      .then(movie => {
+        res
+          .status(201)
+          .json(
+            "Name: " +
+              movie.Director.Name +
+              ". Bio: " +
+              movie.Director.Bio +
+              " Birth: " +
+              movie.Director.Birth +
+              ". Death: " +
+              movie.Director.Death +
+              "."
+          );
+      })
+      .catch(err => {
+        console.error(err);
+        res.status(500).send("Error: " + err);
+      });
   }
 });
 
