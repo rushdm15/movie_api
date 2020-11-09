@@ -99,7 +99,28 @@ app.get(
   }
 );
 
-//Return data about a genre (description) by name/title (e.g., “Thriller”)
+// Get data about a genre by title
+app.get(
+  "/movies/Genres/:Title",
+  passport.authenticate("jwt", { session: false }),
+  (req, res) => {
+    Movies.findOne({ Title: req.params.Title })
+      .then(movie => {
+        res
+          .status(201)
+          .json(
+            "Genre: " +
+              movie.Genre.Name +
+              ". Description: " +
+              movie.Genre.Description
+          );
+      })
+      .catch(err => {
+        console.error(err);
+        res.status(500).send("Error: " + err);
+      });
+  }
+);
 
 //Allow new users to register
 //Add a user
