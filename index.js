@@ -7,7 +7,15 @@ const uuid = require("uuid");
 const passport = require("passport");
 require("./passport");
 const cors = require("cors");
+<<<<<<< HEAD
 let allowedOrigins = ["http://localhost:8080", "http://testsite.com"];
+=======
+let allowedOrigins = [
+  "http://localhost:8080",
+  "http://testsite.com",
+  "http://localhost:1234"
+];
+>>>>>>> ba93a16bb328aa32970ecd8761f77f37d8ec9826
 const { check, validationResult } = require("express-validator");
 
 const Movies = Models.Movie;
@@ -53,9 +61,15 @@ app.use(
 // Gets the list of data about ALL movies
 app.get(
   "/movies",
+<<<<<<< HEAD
   passport.authenticate("jwt", {
     session: false
   }),
+=======
+  // passport.authenticate("jwt", {
+  //   session: false
+  // }),
+>>>>>>> ba93a16bb328aa32970ecd8761f77f37d8ec9826
   (req, res) => {
     Movies.find()
       .then(movies => {
