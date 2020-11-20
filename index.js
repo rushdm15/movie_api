@@ -1,4 +1,5 @@
 const mongoose = require("mongoose");
+require("dotenv").config();
 const Models = require("./models.js");
 const express = require("express");
 const morgan = require("morgan");
@@ -7,7 +8,6 @@ const uuid = require("uuid");
 const passport = require("passport");
 require("./passport");
 const cors = require("cors");
-require("dotenv").config();
 
 let allowedOrigins = [
   "http://localhost:8080",
