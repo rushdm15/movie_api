@@ -1,5 +1,5 @@
-const mongoose = require("mongoose");
 require("dotenv").config();
+const mongoose = require("mongoose");
 const Models = require("./models.js");
 const express = require("express");
 const morgan = require("morgan");
