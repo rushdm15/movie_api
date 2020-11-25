@@ -174,7 +174,6 @@ app.post(
         }
       );
 
-
 // Deletes a movie from list of user's favorite movies
 app.delete(
   "/movies/:title",
@@ -186,9 +185,10 @@ app.delete(
       })
       .catch(error => {
         console.error(error);
-    res.status(201).send("Movie " + req.params.title + " was deleted.");
+        res.status(201).send("Movie " + req.params.title + " was deleted.");
+      });
   }
-});
+);
 
 // Get all users
 app.get("/users", (req, res) => {
