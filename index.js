@@ -172,24 +172,20 @@ app.post(
               res.status(500).send("Error: " + error);
             });
         }
+      );
+
+
+// Deletes a movie from list of user's favorite movies
+app.delete(
+  "/movies/:title",
+  passport.authenticate("jwt", { session: false }),
+  (req, res) => {
+    Movies.findOne({ Title: req.params.Title })
+    .then(movies => {
+        res.status(201).json(movies);
       })
       .catch(error => {
         console.error(error);
-        res.status(500).send("Error: " + error);
-      });
-  }
-);
-
-// Deletes a movie from list of user's favorite movies
-app.delete("/movies/:title", (req, res) => {
-  let movie = movies.find(movie => {
-    return movie.title === req.params.title;
-  });
-
-  if (movie) {
-    movies = movies.filter(obj => {
-      return obj.title !== req.params.title;
-    });
     res.status(201).send("Movie " + req.params.title + " was deleted.");
   }
 });
