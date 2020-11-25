@@ -65,11 +65,7 @@ app.use(
 // Gets the list of data about ALL movies
 app.get(
   "/movies",
-
-  passport.authenticate("jwt", {
-    session: false
-  }),
-
+  passport.authenticate("jwt", { session: false }),
   (req, res) => {
     Movies.find()
       .then(movies => {
@@ -105,13 +101,9 @@ app.get(
   (req, res) => {
     Movies.findOne({ Title: req.params.Title })
       .then(movie => {
-        res
-          .status(201)
+        res.status(201)
           .json(
-            "Genre: " +
-              movie.Genre.Name +
-              ". Description: " +
-              movie.Genre.Description
+            "Genre: " + movie.Genre.Name + ". Description: " + movie.Genre.Description
           );
       })
       .catch(err => {
@@ -224,7 +216,8 @@ app.get("/users", (req, res) => {
   (required)
   Birthday: Date
 }*/
-app.put("/users/:Username", (req, res) => {
+app.put(
+  "/users/:Username",
   Users.findOneAndUpdate(
     { Username: req.params.Username },
     {
@@ -293,18 +286,11 @@ app.get(
   (req, res) => {
     Movies.findOne({ "Director.Name": req.params.Name })
       .then(movie => {
-        res
-          .status(201)
-          .json(
-            "Name: " +
-              movie.Director.Name +
-              ". Bio: " +
-              movie.Director.Bio +
-              " Birth: " +
-              movie.Director.Birth +
-              ". Death: " +
-              movie.Director.Death +
-              "."
+        res.status(201).json(
+            "Name: " + movie.Director.Name +
+            ". Bio: " + movie.Director.Bio +
+            " Birth: " +  movie.Director.Birth +
+            ". Death: " + movie.Director.Death + "."
           );
       })
       .catch(err => {
