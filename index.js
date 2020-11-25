@@ -84,8 +84,8 @@ app.get(
   passport.authenticate("jwt", { session: false }),
   (req, res) => {
     Movies.findOne({ Title: req.params.Title })
-      .then(movies => {
-        res.status(201).json(movies);
+      .then(movie => {
+        res.status(201).json(movie);
       })
       .catch(error => {
         console.error(error);
