@@ -101,9 +101,13 @@ app.get(
   (req, res) => {
     Movies.findOne({ Title: req.params.Title })
       .then(movie => {
-        res.status(201)
+        res
+          .status(201)
           .json(
-            "Genre: " + movie.Genre.Name + ". Description: " + movie.Genre.Description
+            "Genre: " +
+              movie.Genre.Name +
+              ". Description: " +
+              movie.Genre.Description
           );
       })
       .catch(err => {
@@ -172,7 +176,13 @@ app.post(
               res.status(500).send("Error: " + error);
             });
         }
-      );
+      })
+      .catch(error => {
+        console.error(error);
+        res.status(500).send("Error: " + error);
+      });
+  }
+);
 
 // Deletes a movie from list of user's favorite movies
 app.delete(
@@ -180,7 +190,7 @@ app.delete(
   passport.authenticate("jwt", { session: false }),
   (req, res) => {
     Movies.findOne({ Title: req.params.Title })
-    .then(movies => {
+      .then(movies => {
         res.status(201).json(movies);
       })
       .catch(error => {
@@ -217,27 +227,28 @@ app.put(
   "/users/:Username",
   passport.authenticate("jwt", { session: false }),
   (req, res) => {
-  Users.findOneAndUpdate(
-    { Username: req.params.Username },
-    {
-      $set: {
-        Username: req.body.Username,
-        Password: req.body.Password,
-        Email: req.body.Email,
-        Birthday: req.body.Birthday
+    Users.findOneAndUpdate(
+      { Username: req.params.Username },
+      {
+        $set: {
+          Username: req.body.Username,
+          Password: req.body.Password,
+          Email: req.body.Email,
+          Birthday: req.body.Birthday
+        }
+      },
+      { new: true }, // This line makes sure that the updated document is returned
+      (err, updatedUser) => {
+        if (err) {
+          console.error(err);
+          res.status(500).send("Error: " + err);
+        } else {
+          res.json(updatedUser);
+        }
       }
-    },
-    { new: true }, // This line makes sure that the updated document is returned
-    (err, updatedUser) => {
-      if (err) {
-        console.error(err);
-        res.status(500).send("Error: " + err);
-      } else {
-        res.json(updatedUser);
-      }
-    }
-  );
-});
+    );
+  }
+);
 
 // Get a user by username
 app.get(
@@ -285,11 +296,18 @@ app.get(
   (req, res) => {
     Movies.findOne({ "Director.Name": req.params.Name })
       .then(movie => {
-        res.status(201).json(
-            "Name: " + movie.Director.Name +
-            ". Bio: " + movie.Director.Bio +
-            " Birth: " +  movie.Director.Birth +
-            ". Death: " + movie.Director.Death + "."
+        res
+          .status(201)
+          .json(
+            "Name: " +
+              movie.Director.Name +
+              ". Bio: " +
+              movie.Director.Bio +
+              " Birth: " +
+              movie.Director.Birth +
+              ". Death: " +
+              movie.Director.Death +
+              "."
           );
       })
       .catch(error => {
