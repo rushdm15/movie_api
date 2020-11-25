@@ -249,9 +249,9 @@ app.get(
       .then(user => {
         res.json(user);
       })
-      .catch(err => {
-        console.error(err);
-        res.status(500).send("Error: " + err);
+      .catch(error => {
+        console.error(error);
+        res.status(500).send("Error: " + error);
       });
   }
 );
@@ -268,9 +268,9 @@ app.post(
       },
       { new: true }, // This line makes sure that the updated document is returned
       (err, updatedUser) => {
-        if (err) {
-          console.error(err);
-          res.status(500).send("Error: " + err);
+        if (error) {
+          console.error(error);
+          res.status(500).send("Error: " + error);
         } else {
           res.json(updatedUser);
         }
@@ -293,9 +293,9 @@ app.get(
             ". Death: " + movie.Director.Death + "."
           );
       })
-      .catch(err => {
-        console.error(err);
-        res.status(500).send("Error: " + err);
+      .catch(error => {
+        console.error(error);
+        res.status(500).send("Error: " + error);
       });
   }
 );
@@ -314,8 +314,8 @@ app.delete(
         }
       })
       .catch(err => {
-        console.error(err);
-        res.status(500).send("Error: " + err);
+        console.error(error);
+        res.status(500).send("Error: " + error);
       });
   }
 );
