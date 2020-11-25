@@ -141,6 +141,7 @@ app.post(
       .isEmpty(),
     check("Email", "Email does not appear to be valid").isEmail()
   ],
+  passport.authenticate("jwt", { session: false }),
   (req, res) => {
     // check the validation object for errors
     let errors = validationResult(req);
@@ -218,6 +219,8 @@ app.get("/users", (req, res) => {
 }*/
 app.put(
   "/users/:Username",
+  passport.authenticate("jwt", { session: false }),
+  (req, res) => {
   Users.findOneAndUpdate(
     { Username: req.params.Username },
     {
