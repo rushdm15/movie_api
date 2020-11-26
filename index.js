@@ -341,6 +341,34 @@ app.delete(
   }
 );
 
+// Get a list of the user's favourites
+app.get(
+  "/users/favoritemovies/:Username",
+  passport.authenticate("jwt", {
+    session: false
+  }),
+  async function(req, res) {
+    let moviesData = [];
+    let userdata = await Users.findOne({
+      Username: req.params.Username
+    });
+    Promise.all(
+      userdata.FavouriteMovies.map(async id => {
+        await Movies.findById(id).then(function(movie) {
+          moviesData.push(movie);
+        });
+      })
+    )
+      .then(() => {
+        return res.status(200).send({
+          FavouriteMovies: moviesData
+        });
+      })
+      .catch(error => {
+        console.log(error);
+      });
+  }
+);
 //Allow existing users to deregister (showing only a text that a user email has been removed—more on this later)
 
 // app.listen(8080, () => {
