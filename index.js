@@ -369,6 +369,39 @@ app.get(
       });
   }
 );
+
+// Remove movie from user favourite
+app.delete(
+  "/users/:Username/movies/:_id",
+  passport.authenticate("jwt", {
+    session: false
+  }),
+  function(req, res) {
+    Users.findOneAndUpdate(
+      {
+        Username: req.params.Username
+      },
+      {
+        $pull: {
+          FavouriteMovies: req.params._id
+        }
+      },
+      {
+        new: true
+      },
+      // This line makes sure that the updated document is returned
+      function(err, updatedUser) {
+        if (err) {
+          console.error(err);
+          res.status(500).send("Error: " + err);
+        } else {
+          res.json(updatedUser);
+        }
+      }
+    );
+  }
+);
+
 //Allow existing users to deregister (showing only a text that a user email has been removed—more on this later)
 
 // app.listen(8080, () => {
