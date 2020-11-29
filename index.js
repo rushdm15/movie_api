@@ -104,9 +104,9 @@ app.get(
           .status(201)
           .json(
             "Genre: " +
-              movie.Genre.Name +
-              ". Description: " +
-              movie.Genre.Description
+            movie.Genre.Name +
+            ". Description: " +
+            movie.Genre.Description
           );
       })
       .catch((err) => {
@@ -256,7 +256,7 @@ app.delete("/users/:Username/movies/:_id",
       }
     );
   }
-});
+);
 
 // Get all users
 app.get("/users",
@@ -309,9 +309,8 @@ app.put("/users/:Username",
           res.json(updatedUser);
         }
       }
-    }
-  );
-});
+    );
+  });
 
 // Get a user by username
 app.get(
@@ -363,14 +362,14 @@ app.get(
           .status(201)
           .json(
             "Name: " +
-              movie.Director.Name +
-              ". Bio: " +
-              movie.Director.Bio +
-              " Birth: " +
-              movie.Director.Birth +
-              ". Death: " +
-              movie.Director.Death +
-              "."
+            movie.Director.Name +
+            ". Bio: " +
+            movie.Director.Bio +
+            " Birth: " +
+            movie.Director.Birth +
+            ". Death: " +
+            movie.Director.Death +
+            "."
           );
       })
       .catch((err) => {
