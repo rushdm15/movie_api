@@ -105,9 +105,9 @@ app.get(
           .status(201)
           .json(
             "Genre: " +
-              movie.Genre.Name +
-              ". Description: " +
-              movie.Genre.Description
+            movie.Genre.Name +
+            ". Description: " +
+            movie.Genre.Description
           );
       })
       .catch(err => {
@@ -127,6 +127,7 @@ app.get(
   Email: String,
   Birthday: Date
 }*/
+
 app.post(
   "/users",
   // Validation logic here for request
@@ -304,14 +305,14 @@ app.get(
           .status(201)
           .json(
             "Name: " +
-              movie.Director.Name +
-              ". Bio: " +
-              movie.Director.Bio +
-              " Birth: " +
-              movie.Director.Birth +
-              ". Death: " +
-              movie.Director.Death +
-              "."
+            movie.Director.Name +
+            ". Bio: " +
+            movie.Director.Bio +
+            " Birth: " +
+            movie.Director.Birth +
+            ". Death: " +
+            movie.Director.Death +
+            "."
           );
       })
       .catch(error => {
@@ -347,14 +348,14 @@ app.get(
   passport.authenticate("jwt", {
     session: false
   }),
-  async function(req, res) {
+  async function (req, res) {
     let moviesData = [];
     let userdata = await Users.findOne({
       Username: req.params.Username
     });
     Promise.all(
       userdata.FavouriteMovies.map(async id => {
-        await Movies.findById(id).then(function(movie) {
+        await Movies.findById(id).then(function (movie) {
           moviesData.push(movie);
         });
       })
@@ -376,7 +377,7 @@ app.delete(
   passport.authenticate("jwt", {
     session: false
   }),
-  function(req, res) {
+  function (req, res) {
     Users.findOneAndUpdate(
       {
         Username: req.params.Username
@@ -390,7 +391,7 @@ app.delete(
         new: true
       },
       // This line makes sure that the updated document is returned
-      function(err, updatedUser) {
+      function (err, updatedUser) {
         if (err) {
           console.error(err);
           res.status(500).send("Error: " + err);
