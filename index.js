@@ -229,30 +229,50 @@ app.post(
 );
 
 // Deletes a movie from list of user's favorite movies
-app.delete("/movies/:title", (req, res) => {
-  let movie = movies.find((movie) => {
-    return movie.title === req.params.title;
-  });
-
-  if (movie) {
-    movies = movies.filter((obj) => {
-      return obj.title !== req.params.title;
-    });
-    res.status(201).send("Movie " + req.params.title + " was deleted.");
+app.delete("/users/:Username/movies/:_id",
+  passport.authenticate("jwt", {
+    session: false,
+  }),
+  (req, res) => {
+    Users.findOneAndUpdate( => {
+      Username: req.params.Username;
+    },
+      {
+        $pull: {
+          FavoriteMovies: req.params._id,
+        },
+      },
+      {
+        new: true,
+      },
+      // This line makes sure that the updated document is returned
+      function (err, updatedUser) {
+        if (err) {
+          console.error(err);
+          res.status(500).send("Error: " + err);
+        } else {
+          res.json(updatedUser);
+        }
+      }
+    );
   }
 });
 
 // Get all users
-app.get("/users", (req, res) => {
-  Users.find()
-    .then((users) => {
-      res.status(201).json(users);
-    })
-    .catch((err) => {
-      console.error(err);
-      res.status(500).send("Error: " + err);
-    });
-});
+app.get("/users",
+  passport.authenticate("jwt", {
+    session: false,
+  }),
+  (req, res) => {
+    Users.find()
+      .then((users) => {
+        res.status(201).json(users);
+      })
+      .catch((err) => {
+        console.error(err);
+        res.status(500).send("Error: " + err);
+      });
+  });
 
 // Update a user's info, by username
 /* We’ll expect JSON in this format
@@ -265,24 +285,29 @@ app.get("/users", (req, res) => {
   (required)
   Birthday: Date
 }*/
-app.put("/users/:Username", (req, res) => {
-  Users.findOneAndUpdate(
-    { Username: req.params.Username },
-    {
-      $set: {
-        Username: req.body.Username,
-        Password: req.body.Password,
-        Email: req.body.Email,
-        Birthday: req.body.Birthday,
+app.put("/users/:Username",
+  passport.authenticate("jwt", {
+    session: false,
+  }),
+  (req, res) => {
+    Users.findOneAndUpdate(
+      { Username: req.params.Username },
+      {
+        $set: {
+          Username: req.body.Username,
+          Password: req.body.Password,
+          Email: req.body.Email,
+          Birthday: req.body.Birthday,
+        },
       },
-    },
-    { new: true }, // This line makes sure that the updated document is returned
-    (err, updatedUser) => {
-      if (err) {
-        console.error(err);
-        res.status(500).send("Error: " + err);
-      } else {
-        res.json(updatedUser);
+      { new: true }, // This line makes sure that the updated document is returned
+      (err, updatedUser) => {
+        if (err) {
+          console.error(err);
+          res.status(500).send("Error: " + err);
+        } else {
+          res.json(updatedUser);
+        }
       }
     }
   );
