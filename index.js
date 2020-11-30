@@ -234,9 +234,10 @@ app.delete("/users/:Username/movies/:_id",
     session: false,
   }),
   (req, res) => {
-    Users.findOneAndUpdate( => {
-      Username: req.params.Username;
-    },
+    Users.findOneAndUpdate(
+      {
+        Username: req.params.Username;
+      },
       {
         $pull: {
           FavoriteMovies: req.params._id,
