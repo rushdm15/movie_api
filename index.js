@@ -1,4 +1,5 @@
 // require("dotenv").config();
+const bcrypt = require("bcrypt");
 const mongoose = require("mongoose");
 const Models = require("./models.js");
 const express = require("express");
@@ -8,7 +9,6 @@ const uuid = require("uuid");
 const passport = require("passport");
 require("./passport");
 const cors = require("cors");
-const bcrypt = require("bcrypt");
 let allowedOrigins = [
   "http://localhost:8080",
   "http://testsite.com",
