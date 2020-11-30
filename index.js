@@ -236,7 +236,7 @@ app.delete("/users/:Username/movies/:_id",
   (req, res) => {
     Users.findOneAndUpdate(
       {
-        Username: req.params.Username;
+        Username: req.params.Username,
       },
       {
         $pull: {
