@@ -331,7 +331,7 @@ app.get(
 
 // Add a movie to a user's list of favorites
 app.post(
-  "/users/:Username/FavoriteMovies/:_id",
+  "/users/:Username/Movies/:_id",
   passport.authenticate("jwt", { session: false }),
   (req, res) => {
     Users.findOne(
