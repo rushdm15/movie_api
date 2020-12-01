@@ -334,7 +334,7 @@ app.post(
   "/users/:Username/Movies/:MovieID",
   passport.authenticate("jwt", { session: false }),
   (req, res) => {
-    Users.findById(
+    Users.findByIdAndUpdate(
       { Username: req.params.Username },
       {
         $push: { FavoriteMovies: req.body.MovieID },
