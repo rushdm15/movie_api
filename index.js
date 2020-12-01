@@ -337,7 +337,7 @@ app.post(
     Users.findByIdAndUpdate(
       { Username: req.params.Username },
       {
-        $push: { FavoriteMovies: req.body.MovieID },
+        $push: { FavoriteMovies: req.params.MovieID },
       },
       { new: true }, // This line makes sure that the updated document is returned
       (err, updatedUser) => {
