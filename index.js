@@ -7,9 +7,7 @@ require("./passport");
 const Movies = Models.Movie;
 const Users = Models.User;
 const express = require("express"),
-  morgan = require("morgan"),
-  bodyParser = require("body-parser"),
-  uuid = require("uuid/v5");
+  morgan = require("morgan");
 const app = express();
 const cors = require("cors");
 const { check, validationResult } = require("express-validator");
@@ -23,9 +21,8 @@ mongoose.connect(process.env.CONNECTION_URI, {
 
 //Middleware
 app.use(express.static("public"));
-app.use("/client", express.static(path.join(__dirname, "client", "dist")));
 app.use(morgan("common"));
-app.use(bodyParser.json());
+app.use(express.json());
 
 app.use(cors());
 
