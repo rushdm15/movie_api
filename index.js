@@ -24,6 +24,7 @@ const app = express();
 mongoose.connect(process.env.CONNECTION_URI, {
   useNewUrlParser: true,
   useUnifiedTopology: true,
+  useFindAndModify: true,
 });
 
 app.use(bodyParser.json());
