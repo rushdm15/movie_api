@@ -1,4 +1,5 @@
 //Dependancies
+require("dotenv").config();
 const mongoose = require("mongoose");
 const Models = require("./models.js");
 const passport = require("passport");
