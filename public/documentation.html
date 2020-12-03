@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    <title>movie_api</title>
+    <!-- <link href="style.css" rel="stylesheet" type="text/css" /> -->
+  </head>
+  <body>
+    <table>
+      <thead>
+        <tr>
+          <th>Business Logic</th>
+          <th>URL</th>
+          <th>HTTP Method</th>
+          <th>Request body data format</th>
+          <th>Response body data format</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Return a list of ALL movies to the user</td>
+          <td>/movies</td>
+          <td>GET</td>
+          <td>None</td>
+          <td>A JSON object holding data about all the movies</td>
+        </tr>
+        <tr>
+          <td>
+            Return data (description, genre, director, image URL, whether it’s
+            featured or not) about a single movie by title to the user
+          </td>
+          <td>/movies/title</td>
+          <td>GET</td>
+          <td>None</td>
+          <td>
+            A JSON object holding data about a single movie, containing a
+            description, genre, director, image url, featured/not featured, (
+            description : "summary info", genre : "comedy", director :
+            "Spielberg", image url : "imgur.com", featured : "featured" )
+          </td>
+        </tr>
+        <tr>
+          <td>
+            Return data about a genre (description) by name/title (e.g.,
+            “Thriller”)
+          </td>
+          <td>/movies/genre/[title]</td>
+          <td>GET</td>
+          <td>None</td>
+          <td>
+            A JSON object holding data about a single movie by genre by
+            name/title ( genre : "drama", name/title : "Gone With The Wind")
+          </td>
+        </tr>
+        <tr>
+          <td>
+            Return data about a director (bio, birth year, death year) by name
+          </td>
+          <td>/movies/:title/director</td>
+          <td>GET</td>
+          <td>None</td>
+          <td>
+            A JSON object holding data about a director by name ( bio : "USA",
+            birth year : "1992", death year : "-" )
+          </td>
+        </tr>
+        <tr>
+          <td>Allow new users to register</td>
+          <td>/users</td>
+          <td>POST</td>
+          <td>
+            A JSON in the format ID, Username, Password, Email, and Birthday
+          </td>
+          <!-- <td>
+            A JSON object holding data about the user to add, structured like:
+            (name: "Paulina Smith", classes : ( state: KY age: 21 ) )
+          </td>
+          <td>
+            A JSON object holding data about the user added, including username:
+            (username : "ghnj788", name: "Paulina Smith", classes : ( state: KY
+            age: 21 ) )
+          </td> -->
+        </tr>
+        <tr>
+          <td>Allow users to update their user info (username)</td>
+          <td>/users/:Username</td>
+          <td>PUT</td>
+          <td>None</td>
+          <td>
+            A JSON in the format Username, Password, Email, all required in
+            strings, plus Birthday with date
+          </td>
+        </tr>
+        <tr>
+          <td>
+            Allow users to add a movie to their list of favorites (showing only
+            a text that a movie has been added—more on this later)
+          </td>
+          <td>/users/:Username/Movies/:MovieID</td>
+          <td>POST</td>
+          <td>
+            A text message indicating whether a movie has been added
+          </td>
+          <!-- <td>
+            A JSON object holding data about the movie to add, structured only
+            by a text
+          </td>
+          <td>
+            A JSON object holding data about the movie added, structured only by
+            a text that ( "A movie has been added" )
+          </td> -->
+        </tr>
+        <tr>
+          <td>
+            Allow users to remove a movie from their list of favorites (showing
+            only a text that a movie has been removed—more on this later)
+          </td>
+          <td>/movies/:movieid</td>
+          <td>DELETE</td>
+          <td>None</td>
+          <td>
+            A text message indicating whether a movie was successfully removed
+          </td>
+        </tr>
+        <tr>
+          <td>
+            Allow existing users to deregister (showing only a text that a user
+            email has been removed—more on this later)
+          </td>
+          <td>/users/:Username</td>
+          <td>DELETE</td>
+          <td>None</td>
+          <td>
+            A text message indicating whether a user was successfully removed
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    <!-- <script type="module" src="test.js"></script> -->
+    <!-- <script src="server.js"></script> -->
+    <!-- <script src="log.txt"></script> -->
+  </body>
+</html>
