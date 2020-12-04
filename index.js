@@ -1,37 +1,20 @@
-<<<<<<< HEAD
-//Dependancies
-require("dotenv").config();
-=======
+//Dependencies
 require("dotenv").config();
 const bcrypt = require("bcrypt");
->>>>>>> parent of 42ba13e... Answers
 const mongoose = require("mongoose");
 const Models = require("./models.js");
-const express = require("express");
-const morgan = require("morgan");
-const bodyParser = require("body-parser");
-const uuid = require("uuid");
 const passport = require("passport");
 require("./passport");
-const cors = require("cors");
-let allowedOrigins = [
-  "http://localhost:8080",
-  "http://testsite.com",
-  "http://localhost:1234",
-];
-
-const { check, validationResult } = require("express-validator");
-
 const Movies = Models.Movie;
 const Users = Models.User;
-<<<<<<< HEAD
 const express = require("express"),
   morgan = require("morgan");
 // bodyParser = require("body-parser"),
 // uuid = require("uuid/v5");  
-=======
->>>>>>> parent of 42ba13e... Answers
 const app = express();
+const cors = require("cors");
+const { check, validationResult } = require("express-validator");
+const path = require("path");
 
 mongoose.connect(process.env.CONNECTION_URI, {
   useNewUrlParser: true,
@@ -39,26 +22,30 @@ mongoose.connect(process.env.CONNECTION_URI, {
   useFindAndModify: true,
 });
 
-app.use(bodyParser.json());
-let auth = require("./auth")(app);
-app.use(morgan("common"));
+//Middleware
 app.use(express.static("public"));
-<<<<<<< HEAD
 app.use(morgan("common"));
 // app.use(bodyParser.json());
 app.use(express.json());
 
 app.use(cors());
-=======
-app.use("/client", express.static(path.join(__dirname, "client", "dist")));
-app.use((err, req, res, next) => {
-  console.error(err.stack);
-  res.status(500).send("Something broke!");
-});
->>>>>>> parent of 42ba13e... Answers
 
-app.use(
-  cors());
+let allowedOrigins = [
+  "http://localhost:8080",
+  "http://testsite.com",
+  "http://localhost:1234",
+  "*",
+];
+
+let auth = require("./auth")(app);
+
+app.use(function (err, req, res, next) {
+  console.error(err.stack);
+  res.status(500).send("Oops! Sorry about that, something went wrong!");
+});
+
+// app.use(
+//   cors());
 // {
 //     origin: (origin, callback) => {
 //       if (!origin) return callback(null, true);
@@ -83,11 +70,9 @@ app.get("/", (req, res) => {
 // Gets the list of data about ALL movies
 app.get(
   "/movies",
-
   passport.authenticate("jwt", {
     session: false,
   }),
-
   (req, res) => {
     Movies.find()
       .then((movies) => {
@@ -149,59 +134,6 @@ app.get(
   Email: String,
   Birthday: Date
 }*/
-// app.post(
-//   "/users",
-//   // Validation logic here for request
-//   //you can either use a chain of methods like .not().isEmpty()
-//   //which means "opposite of isEmpty" in plain english "is not empty"
-//   //or use .isLength({min: 5}) which means
-//   //minimum value of 5 characters are only allowed
-//   [
-//     check("Username", "Username is required").isLength({ min: 5 }),
-//     check(
-//       "Username",
-//       "Username contains non alphanumeric characters - not allowed."
-//     ).isAlphanumeric(),
-//     check("Password", "Password is required").not().isEmpty(),
-//     check("Email", "Email does not appear to be valid").isEmail(),
-//   ],
-//   (req, res) => {
-//     // check the validation object for errors
-//     let errors = validationResult(req);
-
-//     if (!errors.isEmpty()) {
-//       return res.status(422).json({ errors: errors.array() });
-//     }
-
-//     let hashedPassword = Users.hashPassword(req.body.Password);
-
-//     Users.findOne({ Username: req.body.Username }) // Search to see if a user with the requested username already exists
-//       .then((user) => {
-//         if (user) {
-//           //If the user is found, send a response that it already exists
-//           return res.status(400).send(req.body.Username + "already exists");
-//         } else {
-//           Users.create({
-//             Username: req.body.Username,
-//             Password: req.body.Password,
-//             Email: req.body.Email,
-//             Birthday: req.body.Birthday,
-//           })
-//             .then((user) => {
-//               res.status(201).json(user);
-//             })
-//             .catch((error) => {
-//               console.error(error);
-//               res.status(500).send("Error: " + error);
-//             });
-//         }
-//       })
-//       .catch((error) => {
-//         console.error(error);
-//         res.status(500).send("Error: " + error);
-//       });
-//   }
-// );
 
 app.post(
   "/users",
