@@ -33,3 +33,16 @@ module.exports = router => {
     })(req, res);
   });
 };
+
+/**
+ * JWT—JSON Web Token—is a JSON-based standard for creating web tokens that can be 
+ * used for authentication (and authorization). 
+ * It’s the de facto standard for most modern web applications. 
+ * You’ll use a middleware library called Passport to generate JWTs for you!
+ * The first thing you need to do is install Passport, 
+ * and the libraries for the authentication methods:
+ * $ npm install --save passport
+ * $ npm install --save passport-local
+ * $ npm install --save passport-jwt
+ * $ npm install --save jsonwebtoken
+ */

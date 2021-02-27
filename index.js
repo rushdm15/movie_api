@@ -42,6 +42,14 @@ app.use(function (err, req, res, next) {
   res.status(500).send("Oops! Sorry about that, something went wrong!");
 });
 
+/**
+ * CRUD
+ * Create new data (POST)
+ * Read existing data (GET)
+ * Update existing data (PUT/PATCH)
+ * Delete existing data (DELETE)
+*/
+
 // GET requests
 app.get("/", (req, res) => {
   res.send("Welcome to my movie club!");
@@ -348,3 +356,17 @@ const port = process.env.PORT || 8080;
 app.listen(port, "0.0.0.0", () => {
   console.log("Listening on Port " + port);
 });
+
+/** 
+ * Every HTTP request consists of:
+ *
+ * A request line containing the request method (POST, GET, PUT, and DELETE) and request URL. 
+ * Request header fields (additional metadata associated with your request). (Express will compose them for you)
+ * An optional request body that can contain any additional information you want.
+ * 
+ * Every HTTP response consists of:
+ *
+ * A status line containing a status code that indicates whether the client’s request succeeded or failed (at a high level) and why. 
+ * Response header fields (additional metadata associated with your response). (Express will compose these for you)
+ * An optional response body that can contain any additional information you want.
+*/
