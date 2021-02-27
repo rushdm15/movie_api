@@ -9,8 +9,6 @@ const Movies = Models.Movie;
 const Users = Models.User;
 const express = require("express"),
   morgan = require("morgan");
-// bodyParser = require("body-parser"),
-// uuid = require("uuid/v5");  
 const app = express();
 const cors = require("cors");
 const { check, validationResult } = require("express-validator");
@@ -25,7 +23,6 @@ mongoose.connect(process.env.CONNECTION_URI, {
 //Middleware
 app.use(express.static("public"));
 app.use(morgan("common"));
-// app.use(bodyParser.json());
 app.use(express.json());
 
 app.use(cors());
@@ -44,24 +41,6 @@ app.use(function (err, req, res, next) {
   console.error(err.stack);
   res.status(500).send("Oops! Sorry about that, something went wrong!");
 });
-
-// app.use(
-//   cors());
-// {
-//     origin: (origin, callback) => {
-//       if (!origin) return callback(null, true);
-//       if (allowedOrigins.indexOf(origin) === -1) {
-//         // If a specific origin isn't found on the list of allowed allowedOrigins
-
-//         let message =
-//           "The CORS policy for this application doesn't allow acces from origin " +
-//           origin;
-//         return callback(new Error(message), false);
-//       }
-//       return callback(null, true);
-//     },
-//   })
-// );
 
 // GET requests
 app.get("/", (req, res) => {
@@ -153,7 +132,7 @@ app.post(
     check("Password", "Password is required").not().isEmpty(),
     check("Email", "Email does not appear to be valid").isEmail(),
   ],
-  // passport.authenticate("jwt", { session: false }),
+
   async (req, res) => {
     // check the validation object for errors
     let errors = validationResult(req);
@@ -175,7 +154,6 @@ app.post(
         Email: req.body.Email,
         Birthday: req.body.Birthday,
       });
-      //https://flexnet91.herokuapp.com
 
       return res.status(201).json(usercreate);
     } catch (error) {
@@ -358,11 +336,6 @@ app.delete(
 );
 
 //Allow existing users to deregister (showing only a text that a user email has been removed—more on this later)
-
-// app.listen(8080, () => {
-//   console.log("Your app is listening on port 8080");
-// });
-
 const port = process.env.PORT || 8080;
 app.listen(port, "0.0.0.0", () => {
   console.log("Listening on Port " + port);
