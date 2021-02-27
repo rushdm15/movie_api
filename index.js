@@ -105,24 +105,30 @@ app.get(
   }
 );
 
-//Allow new users to register
-//Add a user
-/* We’ll expect JSON in this format
-{
-  ID: Integer,
-  Username: String,
-  Password: String,
-  Email: String,
-  Birthday: Date
-}*/
+/** 
+* Allow new users to register
+* Add a user
+* We’ll expect JSON in this format
+* {
+*  ID: Integer,
+*  Username: String,
+*  Password: String,
+*  Email: String,
+*  Birthday: Date
+*}
+*/
 
 app.post(
   "/users",
-  // Validation logic here for request
-  //you can either use a chain of methods like .not().isEmpty()
-  //which means "opposite of isEmpty" in plain english "is not empty"
-  //or use .isLength({min: 5}) which means
-  //minimum value of 5 characters are only allowed
+
+/**   
+*   Validation logic here for request
+*   you can either use a chain of methods like .not().isEmpty()
+*   which means "opposite of isEmpty" in plain english "is not empty"
+*   or use .isLength({min: 5}) which means
+*   minimum value of 5 characters are only allowed
+*/
+
   [
     check("Username", "Username is required").isLength({ min: 5 }),
     check(
@@ -210,17 +216,19 @@ app.get("/users",
       });
   });
 
-// Update a user's info, by username
-/* We’ll expect JSON in this format
-{
-  Username: String,
-  (required)
-  Password: String,
-  (required)
-  Email: String,
-  (required)
-  Birthday: Date
-}*/
+/**  Update a user's info, by username
+* We’ll expect JSON in this format
+* {
+*   Username: String,
+*   (required)
+*   Password: String,
+*   (required)
+*   Email: String,
+*   (required)
+*   Birthday: Date
+* }
+*/
+
 app.put("/users/:Username",
   passport.authenticate("jwt", {
     session: false,
