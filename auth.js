@@ -45,4 +45,7 @@ module.exports = router => {
  * $ npm install --save passport-local
  * $ npm install --save passport-jwt
  * $ npm install --save jsonwebtoken
+ * 
+ * OR single command:
+ * npm install --save passport passport-local passport-jwt jsonwebtoken
  */
